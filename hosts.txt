@@ -1,18 +1,10 @@
 
-
-
 [staging_servers]
 Ansible_server ansible_host=107.21.47.147 
 
 [prod_servers]
 Ubuntu_server_1 ansible_host=3.90.36.70
 Ubuntu_Server_2 ansible_host=54.237.202.52
-
-[prod_web]
-
-[prod_app]
-
-[prod_DB]
 
 
 [windows_servers]

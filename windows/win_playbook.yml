@@ -1,0 +1,32 @@
+---
+- name: Install 7zip
+  hosts: windows_servers
+
+  tasks:
+
+# Install/uninstall with win_package
+
+  - name: Ensure 7-Zip is not installed via win_package
+    win_package:
+      path: C:\temp\7z.msi
+      state: absent
+  - block: # Install 7zip
+      - name: Make dir
+        win_shell: mkdir C:\temp
+        args:
+          executable: cmd.exe
+      - name: Download the 7-Zip package
+        win_get_url:
+          url: https://www.7-zip.org/a/7z1900.msi
+          dest: C:\temp\7z.msi
+      - name: Ensure 7-Zip is installed via win_package
+        win_package:
+          path: C:\temp\7z.msi
+          state: present
+    when: state == "absent"    
+      - name: Run a multiple shell commands
+        win_shell: |
+          New-Item -Path C:\users\Administrator\Desktop\MyFiles -ItemType Directory
+          #Remove-Item -Path C:\users\Administrator\Desktop\MyFiles -Force -Recurse
+          $path_info = Get-Item -Path C:\users\Administrator\Desktop\MyFiles
+          $path_info.FullName 
