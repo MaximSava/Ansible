@@ -1,0 +1,8 @@
+---
+- name: Install Apache and upload my home page
+  hosts: prod_servers
+  become: yes
+  strategy: debug
+
+  roles:
+    - { role: deploy_apache_web, when: ansible_system == 'linux' } # deploy only on linux machines
