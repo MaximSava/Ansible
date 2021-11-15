@@ -1,0 +1,30 @@
+---
+# This playbook for instalation on CenOs7 machine
+- hosts: docker
+  become: true
+  tasks:
+    - name: Dippendancy instalation
+        yum:
+          name: "{{item}}"
+          state: latest
+          update_cache: yes
+        loop:
+          - check-update
+          - device-mapper-persistent-data
+          - lvm2
+    - name: Add Docker CE repo
+      get_url:
+        url: https://download.docker.com/linux/centos/docker-ce.repo
+        dest: /etc/yum.repos.d/docker-ce.repo
+
+    - name: Install Docker
+      yum: name=docker state=latest
+
+    - name: Start and enable the Docker daemon
+      service: name=docker state=started enabled=yes
+  handlers:
+    - name: restart docker
+      service:
+        name: docker
+        state: restarted
+
