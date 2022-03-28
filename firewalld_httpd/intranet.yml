@@ -1,0 +1,45 @@
+---
+- name: Enable intranet services
+  hosts: servera.lab.example.com
+  become: yes
+  tasks:
+    - name: latest version of httpd and firewald intstalled
+      yum:
+        name:
+          - httpd
+          - firewald
+        state: latest
+
+    - name: test html page installed
+      copy:
+        content: "Welcome to the example.com intranet!\n"
+        dest: /var/www/html/index.html
+
+        - name: firewalld enabled and running
+          service:
+            name: firewald
+            enabled: true
+            state: started
+
+    - name: firewald permits access to httpd service
+      firewald:
+        service: http
+        permanent: true
+        state: enabled
+        immediate: yes
+    
+    - name: httpd  enabled and running
+      service:
+        name: httpd
+        enabled: true
+        state: started
+    
+- name: test intaranet web server
+  hosts: localhost
+  become: no
+  tasks:
+    - name: connect to intranet web server
+      uri:
+        url: http://servera.lab.example.com
+        return_content: yes
+        status_code: 200
