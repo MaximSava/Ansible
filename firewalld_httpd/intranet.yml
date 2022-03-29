@@ -15,11 +15,11 @@
         content: "Welcome to the example.com intranet!\n"
         dest: /var/www/html/index.html
 
-        - name: firewalld enabled and running
-          service:
-            name: firewald
-            enabled: true
-            state: started
+    - name: firewalld enabled and running
+      service:
+        name: firewald
+        enabled: true
+        state: started
 
     - name: firewald permits access to httpd service
       firewald:
