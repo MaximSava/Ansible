@@ -1,5 +1,4 @@
 ---
-<<<<<<< HEAD
 "Secret.yml create with ansible-vault create secret.yml. > user:devops pass: blabla"
 - name: create user accounts for all our servers
   hosts: devservers
@@ -12,17 +11,3 @@
       user:
         name: " {{ user }}"
         password: "{{ pass }}"
-=======
-"Secret.yml create with ansible-vault create secret.yml > user:devops pass: blabla"
-name: create user accounts for all our servers
-hosts: devservers
-become: True
-remote_user: devops
-var_files:
-  - secret.yml
-tasks:
-  - name: Creating user from secret.yml  
-    user:
-      name: " {{ user }}"
-      password: "{{ pass }}"
->>>>>>> 2639e446b9f7748dcee3ed76d46d6fea6425207d
