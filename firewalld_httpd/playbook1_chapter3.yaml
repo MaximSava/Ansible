@@ -8,39 +8,39 @@
     python_pkg: python3-PyMySQL
     rule: http
   
-    tasks:
-      - name: required packages are installed and up to date
-        yum:
-          name:
-            - "{{ web_pkg }}"
-            - "{{ firewall_pkg}}"
-            - "{{ python_pkg }}"
-          state: latest
+  tasks:
+    - name: required packages are installed and up to date
+      yum:
+        name:
+          - "{{ web_pkg }}"
+          - "{{ firewall_pkg}}"
+          - "{{ python_pkg }}"
+        state: latest
 
-      - name: The {{ firewall_service }} service is started and enabled
-        service:
-          name: "{{ firewall_service }}"
-          enabled: true
-          state: started
+    - name: The {{ firewall_service }} service is started and enabled
+      service:
+        name: "{{ firewall_service }}"
+        enabled: true
+        state: started
 
-      - name: The {{ web_service }} service is started and enabled
-        service:
-          name: "{{ web_service }}"
-          enabled: true
-          state: started
+    - name: The {{ web_service }} service is started and enabled
+      service:
+        name: "{{ web_service }}"
+        enabled: true
+        state: started
 
-      - name: Web content is in place
-        copy:
-          content: "Example web content"
-          dest: /var/www/html/index.html
+    - name: Web content is in place
+      copy:
+        content: "Example web content"
+        dest: /var/www/html/index.html
 
-      - name: The firewall port for {{ rule }} is open
-        firewald:
-          service: "{{ rule }}"
-          permanent: true
-          immediate: true
-          state: enabled
-          
+    - name: The firewall port for {{ rule }} is open
+      firewald:
+        service: "{{ rule }}"
+        permanent: true
+        immediate: true
+        state: enabled
+       
 - name: Verify the apache service
   hosts: localhost
   become: false
