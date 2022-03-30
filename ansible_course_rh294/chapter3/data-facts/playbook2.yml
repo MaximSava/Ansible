@@ -95,8 +95,4 @@
       register: auth_test
 
     - debug:
-        var: auth_test.content  
-      
-
-
-
+        var: auth_test.content

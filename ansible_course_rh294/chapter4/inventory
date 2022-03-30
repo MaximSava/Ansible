@@ -1,0 +1,5 @@
+[database_dev]
+server1.com
+
+[database_prod]
+server2.com
