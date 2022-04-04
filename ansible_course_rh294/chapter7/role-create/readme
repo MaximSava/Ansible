@@ -1,0 +1,6 @@
+# After deployment checking
+ansible webservers -a 'systemctl is-active httpd'
+ansible webservers -a 'systemctl is-enabled httpd'
+ansible webservers -a 'cat /etc/httpd/conf.d/vhost.conf'
+ansible webservers -a 'cat /var/www/vhosts/servera/index.html'
+ansible webservers -m uri -a 'url=http://localhost return_content=true'
