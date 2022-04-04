@@ -1,0 +1,4 @@
+#Install rhel-system-roles
+ansible-galaxy list
+sudo yum install rhel-system-roles
+cat /usr/share/doc/rhel-system-roles/timesync/README.md
