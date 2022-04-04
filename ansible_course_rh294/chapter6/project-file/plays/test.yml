@@ -1,9 +1,5 @@
 ---
-- name: Test web service
-  host: localhost
-  become: no
-  tasks:
-    - name: connect to internet web server
-      uri:
-        url: "{{ url }}"
-        status_code: 200
+  - name: connect to internet web server
+    uri:
+     url: "{{ url }}"
+       status_code: 200
