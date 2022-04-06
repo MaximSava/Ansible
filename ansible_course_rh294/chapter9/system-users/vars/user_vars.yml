@@ -1,0 +1,10 @@
+---
+users:
+  - username: user1
+    groups: webadmin
+  - username: user2
+     groups: webadmin
+  - username: user3
+     groups: webadmin   
+
+
