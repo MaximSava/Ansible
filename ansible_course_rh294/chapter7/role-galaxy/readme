@@ -1,0 +1,5 @@
+The steps above demonstrate that the development version of the student.bash_env
+role is defective. Based on testing results, developers will commit necessary fixes back to
+the development branch of the role. When the development branch passes required quality
+checks, developers merge features from the development branch into the master branch.
+Committing role changes to a Git repository is beyond the scope of this course.
